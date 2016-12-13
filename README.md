@@ -12,3 +12,5 @@ networks:
     external:
       name: kthnodebackend_bnet
 ```
+
+Database data is stored in the directories ```[this project dir]/redis``` and ```[this project dir]/mongodb```. These directories are gitignored.
