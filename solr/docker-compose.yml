@@ -1,0 +1,15 @@
+version: '2'
+services:
+  solr:
+    build: .
+    ports:
+      - 8983:8983
+    volumes:
+      - ./data:/opt/solr/data
+    networks:
+      - bnet
+
+networks:
+  bnet:
+    driver: bridge
+
