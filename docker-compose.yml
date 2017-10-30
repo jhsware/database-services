@@ -3,16 +3,16 @@ services:
   redis:
     image: redis:3.2.6
     ports:
-      - 6379:6379
+      - 127.0.0.1:6379:6379
     volumes:
       - ./redis:/data
     networks:
       - bnet
 
   mongodb:
-    image: mongo:3.2.10
+    image: mongo:3.2.17
     ports:
-      - 27017:27017
+      - 127.0.0.1:27017:27017
     volumes:
       - ./mongodb:/data/db
     networks:
