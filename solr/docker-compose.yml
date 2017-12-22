@@ -6,6 +6,7 @@ services:
       - 8983:8983
     volumes:
       - ./data:/opt/solr/data
+      - ./config:/opt/solr/conf
     networks:
       - bnet
 

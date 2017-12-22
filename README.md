@@ -21,3 +21,6 @@ Database data is stored in the directories ```[this project dir]/redis``` and ``
 
 ## MongoDB
 
+## Solr
+Copied from:
+https://github.com/docker-solr/docker-solr
