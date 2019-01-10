@@ -36,6 +36,10 @@ for i in "$@"; do
       docker-compose --file ./docker-compose-mongodb.yml $CMD
       shift
     ;;
+    solr)
+      docker-compose --file ./solr/docker-compose.yml $CMD
+      shift
+    ;;
     *)
       shift
     ;;
