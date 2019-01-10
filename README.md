@@ -10,8 +10,10 @@ Use the following network settings in the ```docker-compose.yml``` for your app 
 networks:
   default:
     external:
-      name: kthnodebackend_[service]_net
+      name: database-service_[service]_net
 ```
+
+Or access it from your local machine on the standard ports.
 
 Database data is stored in the directories ```[this project dir]/redis``` and ```[this project dir]/mongodb```. These directories are gitignored.
 
