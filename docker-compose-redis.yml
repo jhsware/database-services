@@ -7,8 +7,8 @@ services:
     volumes:
       - ./redis:/data
     networks:
-      - redisnet
+      - redis_net
 networks:
-  redisnet:
+  redis_net:
     driver: bridge
 

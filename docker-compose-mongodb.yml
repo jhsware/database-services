@@ -7,9 +7,9 @@ services:
     volumes:
       - ./mongodb:/data/db
     networks:
-      - mongonet
+      - mongodb_net
 
 networks:
-  mongonet:
+  mongodb_net:
     driver: bridge
 

@@ -8,9 +8,9 @@ services:
       - ./data:/opt/solr/data
       - ./config:/opt/solr/server/solr/configsets
     networks:
-      - solrnet
+      - solr_net
 
 networks:
-  solrnet:
+  solr_net:
     driver: bridge
 

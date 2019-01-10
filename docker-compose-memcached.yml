@@ -1,13 +1,13 @@
 version: '2'
 services:
-  redis:
+  memcached:
     image: memcached:1.4-alpine
     ports:
       - 127.0.0.1:11211:11211
     networks:
-      - memcachenet
+      - memcached_net
 
 networks:
-  memcachenet:
+  memcached_net:
     driver: bridge
 
