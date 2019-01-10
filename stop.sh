@@ -1,3 +1,2 @@
 #!/bin/bash
-
-docker-compose down
+./service stop redis mongodb

@@ -6,11 +6,11 @@ services:
       - 8983:8983
     volumes:
       - ./data:/opt/solr/data
-      - ./config:/opt/solr/conf
+      - ./config:/opt/solr/server/solr/configsets
     networks:
-      - bnet
+      - solrnet
 
 networks:
-  bnet:
+  solrnet:
     driver: bridge
 

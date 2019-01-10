@@ -1,0 +1,43 @@
+#!/bin/bash
+
+##
+if [ $1 = "help" ] || [ -z "$2" ]; then
+  echo "Usage: service start [services]"
+  echo "You can use labor, cache etc. to check all servers in that group"
+  echo ""
+  echo "services:"
+  echo "memcached -- memcached daemon available on 11211"
+  echo "redis -- redis available on 6379"
+  echo "mongodb -- mongodb available on 27017"
+fi
+
+# Select if we should start or stop the service
+case $1 in
+  start)
+  CMD="up -d --remove-orphans"
+  ;;
+  stop)
+  CMD="down --remove-orphans"
+  ;;
+esac
+
+for i in "$@"; do
+  echo $1
+  case $i in
+    memcached)
+      docker-compose --file ./docker-compose-memcache.yml $CMD
+      shift
+    ;;
+    redis)
+      docker-compose --file ./docker-compose-redis.yml $CMD
+      shift
+    ;;
+    mongodb)
+      docker-compose --file ./docker-compose-mongodb.yml $CMD
+      shift
+    ;;
+    *)
+      shift
+    ;;
+  esac
+done
