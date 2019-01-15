@@ -11,13 +11,16 @@ if [ $1 = "help" ] || [ -z "$2" ]; then
   echo "mongodb -- mongodb available on 27017"
 fi
 
+### TODO: Pass version as variable redis -v 1.3.5
+### https://docs.docker.com/compose/environment-variables/
+
 # Select if we should start or stop the service
 case $1 in
   start)
-  CMD="up -d --remove-orphans"
+  CMD="up -d"
   ;;
   stop)
-  CMD="down --remove-orphans"
+  CMD="down"
   ;;
 esac
 
