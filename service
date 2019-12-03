@@ -1,15 +1,16 @@
 #!/bin/bash
 
 ##
-if [ $1 = "help" ] || [ -z "$2" ]; then
+if [ -z "$2" ] || [ $1 = "help" ]; then
   echo "Usage: service start [services]"
   echo "You can use labor, cache etc. to check all servers in that group"
   echo ""
   echo "services:"
   echo "elasticsearch -- elasticsearch available on 9200"
   echo "memcached -- memcached daemon available on 11211"
-  echo "redis -- redis available on 6379"
   echo "mongodb -- mongodb available on 27017"
+  echo "redis -- redis available on 6379"
+  echo "solr -- solr available on 8983"
 fi
 
 ### TODO: Pass version as variable redis -v 1.3.5
@@ -25,9 +26,14 @@ case $1 in
   ;;
 esac
 
+PREFIX="COMPOSE_IGNORE_ORPHANS=true"
+
+printf "$1: "
 for i in "$@"; do
-  echo $1
   case $i in
+    start) ;; stop)
+      shift
+      ;;
     memcached)
       docker-compose --file ./docker-compose-memcached.yml $CMD
       shift
@@ -49,6 +55,7 @@ for i in "$@"; do
       shift
     ;;
     *)
+      echo "Unknown service $i"
       shift
     ;;
   esac
