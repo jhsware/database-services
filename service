@@ -6,6 +6,7 @@ if [ $1 = "help" ] || [ -z "$2" ]; then
   echo "You can use labor, cache etc. to check all servers in that group"
   echo ""
   echo "services:"
+  echo "elasticsearch -- elasticsearch available on 9200"
   echo "memcached -- memcached daemon available on 11211"
   echo "redis -- redis available on 6379"
   echo "mongodb -- mongodb available on 27017"
@@ -41,6 +42,10 @@ for i in "$@"; do
     ;;
     solr)
       docker-compose --file ./solr/docker-compose.yml $CMD
+      shift
+    ;;
+    elasticsearch)
+      docker-compose --file ./elasticsearch/docker-compose.yml $CMD
       shift
     ;;
     *)
