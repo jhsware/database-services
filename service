@@ -1,9 +1,11 @@
 #!/bin/bash
 
 ##
-if [ -z "$2" ] || [ $1 = "help" ]; then
+if [ -z "$2" ] || [ $1 = "--help" ] || [ $1 = "-h" ]; then
+  echo
   echo "Usage: service start [services]"
-  echo "You can use labor, cache etc. to check all servers in that group"
+  echo "Usage: service stop [services]"
+  echo "You can start/stop multiple services with one call by separating them with space."
   echo ""
   echo "services:"
   echo "elasticsearch -- elasticsearch available on 9200"
@@ -11,6 +13,8 @@ if [ -z "$2" ] || [ $1 = "help" ]; then
   echo "mongodb -- mongodb available on 27017"
   echo "redis -- redis available on 6379"
   echo "solr -- solr available on 8983"
+  echo
+  exit 0
 fi
 
 ### TODO: Pass version as variable redis -v 1.3.5
