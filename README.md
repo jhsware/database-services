@@ -53,6 +53,7 @@ Data stored in: ./mongodb
 
 ## Solr
 Data stored in: ./solr/data
+
 Configuration stored in: ./solr/config
 
 Copied from:
