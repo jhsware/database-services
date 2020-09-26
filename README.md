@@ -15,7 +15,15 @@ https://www.docker.com/products/docker-desktop
 
 (Forked from kth-node-backend)
 
-Run ```./service --help``` to get options
+## Quickstart
+```bash
+git clone git@github.com:jhsware/database-services.git
+cd database-services
+./service start mongodb
+```
+
+Run ```./service --help``` to list all backends:
+
 ```bash
 $ ./service -h
 
@@ -45,13 +53,13 @@ Or access it from your local machine on their respective ports.
 
 Database data is stored in the directories specified in each ```docker-compose-xxx.yml``` file. It's a bit of a mixed bag at the moment so you acctually need to inspect the configuration. The data files are .gitignored.
 
-## Redis
+### Redis
 Data stored in: ./redis
 
-## MongoDB
+### MongoDB
 Data stored in: ./mongodb
 
-## Solr
+### Solr
 Data stored in: ./solr/data
 
 Configuration stored in: ./solr/config
@@ -59,8 +67,8 @@ Configuration stored in: ./solr/config
 Copied from:
 https://github.com/docker-solr/docker-solr
 
-## Elasticsearch
+### Elasticsearch
 Data stored in: ./elasticsearch/data
 
-## Memcached
+### Memcached
 Data stored in: memory
