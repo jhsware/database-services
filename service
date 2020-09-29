@@ -3,8 +3,8 @@
 ##
 if [ -z "$2" ] || [ $1 = "--help" ] || [ $1 = "-h" ]; then
   echo
-  echo "Usage: service start [services]"
-  echo "Usage: service stop [services]"
+  echo "Usage: service start|stop [services]"
+  echo
   echo "You can start/stop multiple services with one call by separating them with space."
   echo ""
   echo "services:"
