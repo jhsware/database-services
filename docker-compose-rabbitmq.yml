@@ -1,0 +1,17 @@
+version: '2'
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    ports:
+      - 127.0.0.1:5672:5672
+      - 127.0.0.1:15672:15672
+    volumes:
+      - ./rabbitmq:/data
+    networks:
+      - rabbitmq_net
+    environment:
+      - "RABBITMQ_MNESIA_BASE=/data"
+networks:
+  rabbitmq_net:
+    driver: bridge
+

@@ -1,0 +1,19 @@
+version: '2'
+services:
+  tigerbeetle:
+    image: ghcr.io/tigerbeetle/tigerbeetle
+    command: "start --addresses=0.0.0.0:3000 /data/0_0.tigerbeetle"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 127.0.0.1:6300:3000
+    volumes:
+      - ./tigerbeetle:/data
+    networks:
+      - tigerbeetle_net
+networks:
+  tigerbeetle_net:
+    driver: bridge
+

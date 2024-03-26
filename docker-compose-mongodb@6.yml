@@ -1,0 +1,15 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - 127.0.0.1:27027:27017
+    volumes:
+      - ./mongodb@6:/data/db
+    networks:
+      - mongodb_net
+
+networks:
+  mongodb_net:
+    driver: bridge
+
