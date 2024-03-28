@@ -12,6 +12,7 @@ if [ -z "$2" ] || [ $1 = "--help" ] || [ $1 = "-h" ]; then
   echo "memcached -- memcached daemon available on 11211"
   echo "mongodb -- mongodb available on 27017"
   echo "mongodb-6 -- mongodb v6 available on 27017"
+  echo "mysql -- MySQL available on 3306"
   echo "rabbitmq -- RabbitMQ available on 5672, 15672"
   echo "redis -- redis available on 6379"
   echo "solr -- solr available on 8983"
@@ -42,42 +43,86 @@ for i in "$@"; do
       shift
       ;;
     memcached)
-      docker-compose --file ./docker-compose-memcached.yml $CMD
-      shift
+      if [ ! -z $CMD ]; then
+        docker-compose --file ./scripts/memcached-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
     ;;
     redis)
-      docker-compose --file ./docker-compose-redis.yml $CMD
-      shift
+      if [ ! -z $CMD ]; then
+        docker-compose --file ./scripts/redis-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
     ;;
     mongodb)
-      docker-compose --file ./docker-compose-mongodb.yml $CMD
-      shift
+      if [ ! -z $CMD ]; then
+        docker-compose --file ./scripts/mongodb-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
     ;;
     mongodb@6)
-      docker-compose --file ./docker-compose-mongodb@6.yml $CMD
-      shift
+      if [ ! -z $CMD ]; then
+        docker-compose --file ./scripts/mongodb@6-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
+    ;;
+    mysql)
+      if [ ! -z $CMD ]; then
+        docker-compose --file ./scripts/mysql-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
     ;;
     solr)
-      docker-compose --file ./solr/docker-compose.yml $CMD
-      shift
+      if [ ! -z $CMD ]; then
+        docker-compose --file ./scripts/solr/docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
     ;;
     elasticsearch)
-      docker-compose --file ./elasticsearch/docker-compose.yml $CMD
-      shift
+      if [ ! -z $CMD ]; then
+        docker-compose --file ./scripts/elasticsearch-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
     ;;
     rabbitmq)
-      docker-compose --file ./docker-compose-rabbitmq.yml $CMD
-      shift
+      if [ ! -z $CMD ]; then
+        docker-compose --file ./scripts/rabbitmq-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
     ;;
     tigerbeetle)
-      docker-compose --file ./docker-compose-tigerbeetle.yml $CMD
-      shift
-    ;;
-    provision-tigerbeetle)
-      # We should have a better solution to provisioning, but this will do:
-      echo "tigerbeetle format --cluster=0 --replica=0 --replica-count=1 ./tigerbeetle/0_0.tigerbeetle"
-      # docker run -v $(pwd)/tigerbeetle:/data ghcr.io/tigerbeetle/tigerbeetle format --cluster=0 --replica=0 --replica-count=1 /data/0_0.tigerbeetle
-      shift
+      if [ ! -z $CMD ]; then
+        docker-compose --file ./scripts/tigerbeetle/docker-compose.yml $CMD
+        shift
+      else
+        shift
+        source scripts/tigerbeetle/provision.sh $@
+        exit 0
+      fi
     ;;
     *)
       echo "Unknown service $i"

@@ -1,7 +1,1 @@
-redis
-mongodb
-solr/data
-solr/config
-tigerbeetle
-rabbitmq
-mongodb@6
+var/

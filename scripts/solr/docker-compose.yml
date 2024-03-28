@@ -5,8 +5,8 @@ services:
     ports:
       - 127.0.0.1:8983:8983
     volumes:
-      - ./data:/opt/solr/data
-      - ./config:/opt/solr/server/solr/configsets
+      - ../../var/solr/data:/opt/solr/data
+      - ../../var/solr/config:/opt/solr/server/solr/configsets
     networks:
       - solr_net
 

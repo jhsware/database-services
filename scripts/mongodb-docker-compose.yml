@@ -1,11 +1,11 @@
 version: '2'
 services:
   mongodb:
-    image: mongo:6.0
+    image: mongo:4.0
     ports:
-      - 127.0.0.1:27027:27017
+      - 127.0.0.1:27017:27017
     volumes:
-      - ./mongodb@6:/data/db
+      - ../var/mongodb:/data/db
     networks:
       - mongodb_net
 

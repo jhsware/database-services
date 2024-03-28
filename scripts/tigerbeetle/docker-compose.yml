@@ -10,7 +10,7 @@ services:
     ports:
       - 127.0.0.1:6300:3000
     volumes:
-      - ./tigerbeetle:/data
+      - ../../var/tigerbeetle:/data
     networks:
       - tigerbeetle_net
 networks:
