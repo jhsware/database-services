@@ -43,8 +43,8 @@ for i in "$@"; do
       shift
       ;;
     memcached)
-      if [ ! -z $CMD ]; then
-        docker-compose --file ./scripts/memcached-docker-compose.yml $CMD
+      if [ ! -z "$CMD" ]; then
+        docker-compose --file ./databases/memcached-docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
@@ -52,8 +52,8 @@ for i in "$@"; do
       fi
     ;;
     redis)
-      if [ ! -z $CMD ]; then
-        docker-compose --file ./scripts/redis-docker-compose.yml $CMD
+      if [ ! -z "$CMD" ]; then
+        docker-compose --file ./databases/redis-docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
@@ -61,8 +61,8 @@ for i in "$@"; do
       fi
     ;;
     mongodb)
-      if [ ! -z $CMD ]; then
-        docker-compose --file ./scripts/mongodb-docker-compose.yml $CMD
+      if [ ! -z "$CMD" ]; then
+        docker-compose --file ./databases/mongodb-docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
@@ -70,8 +70,8 @@ for i in "$@"; do
       fi
     ;;
     mongodb@6)
-      if [ ! -z $CMD ]; then
-        docker-compose --file ./scripts/mongodb@6-docker-compose.yml $CMD
+      if [ ! -z "$CMD" ]; then
+        docker-compose --file ./databases/mongodb@6-docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
@@ -79,8 +79,8 @@ for i in "$@"; do
       fi
     ;;
     mysql)
-      if [ ! -z $CMD ]; then
-        docker-compose --file ./scripts/mysql-docker-compose.yml $CMD
+      if [ ! -z "$CMD" ]; then
+        docker-compose --file ./databases/mysql-docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
@@ -88,8 +88,8 @@ for i in "$@"; do
       fi
     ;;
     solr)
-      if [ ! -z $CMD ]; then
-        docker-compose --file ./scripts/solr/docker-compose.yml $CMD
+      if [ ! -z "$CMD" ]; then
+        docker-compose --file ./databases/solr/docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
@@ -97,8 +97,8 @@ for i in "$@"; do
       fi
     ;;
     elasticsearch)
-      if [ ! -z $CMD ]; then
-        docker-compose --file ./scripts/elasticsearch-docker-compose.yml $CMD
+      if [ ! -z "$CMD" ]; then
+        docker-compose --file ./databases/elasticsearch-docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
@@ -106,8 +106,8 @@ for i in "$@"; do
       fi
     ;;
     rabbitmq)
-      if [ ! -z $CMD ]; then
-        docker-compose --file ./scripts/rabbitmq-docker-compose.yml $CMD
+      if [ ! -z "$CMD" ]; then
+        docker-compose --file ./databases/rabbitmq-docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
@@ -115,12 +115,12 @@ for i in "$@"; do
       fi
     ;;
     tigerbeetle)
-      if [ ! -z $CMD ]; then
-        docker-compose --file ./scripts/tigerbeetle/docker-compose.yml $CMD
+      if [ ! -z "$CMD" ]; then
+        docker-compose --file ./databases/tigerbeetle/docker-compose.yml $CMD
         shift
       else
         shift
-        source scripts/tigerbeetle/provision.sh $@
+        source databases/tigerbeetle/provision.sh $@
         exit 0
       fi
     ;;
