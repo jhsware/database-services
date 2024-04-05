@@ -7,16 +7,26 @@ if [ -z "$2" ] || [ $1 = "--help" ] || [ $1 = "-h" ]; then
   echo
   echo "You can start/stop multiple services with one call by separating them with space."
   echo ""
-  echo "services:"
-  echo "dragonfly -- dragonfly available on 6379 (redis alternative)"
-  echo "elasticsearch -- elasticsearch available on 9200"
-  echo "memcached -- memcached daemon available on 11211"
+  echo "General databases:"
   echo "mongodb -- mongodb available on 27017"
   echo "mongodb-6 -- mongodb v6 available on 27017"
   echo "mysql -- MySQL available on 3306"
+  echo "postgres -- PostgreSQL available on 5432"
+  echo
+  echo "Message storage:"
   echo "rabbitmq -- RabbitMQ available on 5672, 15672"
+  echo
+  echo "Key/val stores:"
   echo "redis -- redis available on 6379"
+  echo "dragonfly -- dragonfly available on 6379 (redis alternative)"
+  echo
+  echo "Indexing engines:"
+  echo "elasticsearch -- elasticsearch available on 9200"
+  echo "opensearch -- opensearch available on 9200 (elasticsearch alternative)"
+  echo "memcached -- memcached daemon available on 11211"
   echo "solr -- solr available on 8983"
+  echo
+  echo "Specialised DB:"
   echo "tigerbeetle -- tigerbeetle available on 6300"
   echo
   exit 0
@@ -103,6 +113,15 @@ for i in "$@"; do
         exit 0
       fi
     ;;
+    postgres)
+      if [ ! -z "$CMD" ]; then
+        $COMPOSE_CMD --file ./databases/postgres-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
+    ;;
     solr)
       if [ ! -z "$CMD" ]; then
         $COMPOSE_CMD --file ./databases/solr/docker-compose.yml $CMD
@@ -115,6 +134,15 @@ for i in "$@"; do
     elasticsearch)
       if [ ! -z "$CMD" ]; then
         $COMPOSE_CMD --file ./databases/elasticsearch-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
+    ;;
+    opensearch)
+      if [ ! -z "$CMD" ]; then
+        $COMPOSE_CMD --file ./databases/opensearch-docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
