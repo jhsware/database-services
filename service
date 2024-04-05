@@ -8,6 +8,7 @@ if [ -z "$2" ] || [ $1 = "--help" ] || [ $1 = "-h" ]; then
   echo "You can start/stop multiple services with one call by separating them with space."
   echo ""
   echo "services:"
+  echo "dragonfly -- dragonfly available on 6379 (redis alternative)"
   echo "elasticsearch -- elasticsearch available on 9200"
   echo "memcached -- memcached daemon available on 11211"
   echo "mongodb -- mongodb available on 27017"
@@ -51,6 +52,15 @@ for i in "$@"; do
     memcached)
       if [ ! -z "$CMD" ]; then
         $COMPOSE_CMD --file ./databases/memcached-docker-compose.yml $CMD
+        shift
+      else
+        echo "No $1 script yet"
+        exit 0
+      fi
+    ;;
+    dragonfly)
+      if [ ! -z "$CMD" ]; then
+        $COMPOSE_CMD --file ./databases/dragonfly-docker-compose.yml $CMD
         shift
       else
         echo "No $1 script yet"
